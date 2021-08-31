@@ -27,11 +27,18 @@ Definições:
   - Integrar o código do Colab para acionar a API para atualizar os estados dos modelos
   - Integrar com o visual da parte da Erika
 - Erika
-  - Criar uma linha nova na tabela via codigo e atualizar a partir de uma chave de pesquisa
+  - Criar uma linha nova na tabela via codigo e atualizar a partir de uma chave de pesquisa ok
+  VERIFICAR
+  - Qual o resultado da função que treina o modelo, com esse resultado deverá passar os parametros(Modelo, chave e estado)
+  para salvar nova linha na tabela
+  - A função update da tabela tem como parametro a chave e o novo estado - verificar como se relaciona com a atualização
+  dos modelos
+  
+  
   - Preecher um DropDown com modelo_id a partir de dados do banco de dados do usuário logado
-  - Na Tabela de Modelos, adicionar um campo usuário que criou o modelo
+  - Na Tabela de Modelos, adicionar um campo usuário que criou o modelo - ok
   - Filtrar nas telas apenas os modelos criados pelo usuário logado
-  - Criar um nome da aplicação para publicar: suggeri
+  - Criar um nome da aplicação para publicar: suggeri 
 - Ronivaldo
   - Criar funcao modelo usando requests para chamar a API
   - Tirar dúvidas
