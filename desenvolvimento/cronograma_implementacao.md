@@ -30,4 +30,4 @@ Cada membro estudou o problema de forma isolada e foi promovida uma reunião com
 - Arquitetura da API: Geziel
 - Mentoria: Ronivaldo
 
-Semanalmente, o mentor promovia uma reunião de acompanhamento e definição de novas tarefas. Mais detalhes podem ser obtidos na lista de [sessões](../SESSOES.md).
+Semanalmente, o mentor promovia uma reunião de acompanhamento e definição de novas tarefas. Mais detalhes podem ser obtidos na lista de [sessões](./SESSOES.md).
