@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Online RESTful web service for easy conversion of ZPL code to PNG images or PDF files.">
+        <link rel="icon" type="image/png" href="favicon.png">
+        <title>Suggeri - API - Documentação</title>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- Custom styling -->
+        <style>
+            #logo {
+                margin-right: 0.2em;
+            }
+            a.navbar-brand {
+                letter-spacing: 0.15em;
+            }
+            div.pull-left {
+                padding-right: 1em;
+            }
+        </style>
+
+<style>
+    /* https://stackoverflow.com/questions/10405945/html-ordered-list-1-1-1-2-nested-counters-and-scope-not-working */
+    ol {
+        counter-reset: item;
+    }
+    ol > li {
+        counter-increment: item;
+    }
+    ol ol > li {
+        display: block;
+    }
+    ol ol > li:before {
+        content: counters(item, ".") ". ";
+        margin-left: -20px;
+    }
+    /* https://github.com/rs/curlie/blob/master/formatter/color.go */
+    /* https://jonasjacek.github.io/colors/ */
+    .console {
+        color: #eee;
+        background-color: #222;
+        padding: 1em;
+        font-family: monospace;
+        white-space: nowrap;
+        display: table; /* shrink width to size of contents */
+    }
+    .console .value  { color: #00afaf; }
+    .console .status { color: #af8700; }
+    .console .field  { color: #0087ff; }
+    .console .faded  { color: #8a8a8a; }
+    .code {
+        margin: 1em;
+        border: 1px solid darkgray;
+        background-color: #eee;
+        padding: 0.5em;
+    }
+    .code .string   { color: red;    }
+    .code .comment  { color: green;  }
+    .code .literal  { color: purple; }
+    .code .constant { color: purple; }
+    .code .keyword  { color: blue;   }
+    .hanging-indent {
+        padding-left: 1.5em;
+        text-indent: -1em;
+    }
+    .tech {
+        padding: 0.3em;
+        font-family: monospace;
+        background-color: #fff6ea;
+    }
+    dl dt:not(:first-child) {
+        padding-top: 1em;
+    }
+    section {
+        /* no collapsing margins */
+        overflow: auto;
+    }
+    section > p, section > h2, section > h3, section > h4, section > dl {
+        /* improves target animation look */
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    h2 {
+        margin-bottom: 1em;
+    }
+    h3, h4 {
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+    }
+    :target {
+        animation: 2s highlightTarget cubic-bezier(0.3,0.9,0.4,0.9) 2 alternate;
+    }
+    @keyframes highlightTarget {
+        from {                              }
+        to   { background-color: peachpuff; }
+    }
+    section:last-of-type {
+        /* a little space at the bottom of the page */
+        margin-bottom: 2em;
+    }
+</style>
+    </head>
+    <body>
+
+
+        <div class="container">
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Suggeri API</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <ol>
+            <li><a href="#intro">Introdução</a></li>
+            <li><a href="#parameters">Parâmetros</a></li>
+            <li><a href="#limits">Limites</a></li>
+            <li><a href="#examples">Exemplos</a>
+                <ol>
+                    <li><a href="#live">Live</a></li>
+                    <li><a href="#curl">curl</a></li>
+                    <li><a href="#postman">Postman</a></li>
+                    <li><a href="#posh">PowerShell</a></li>
+                    <li><a href="#java">Java</a></li>
+                    <li><a href="#python">Python</a></li>
+                    <li><a href="#ruby">Ruby</a></li>
+                    <li><a href="#node">Node.js</a></li>
+                    <li><a href="#dlang">D Language</a></li>
+                    <li><a href="#csharp">C#</a></li>
+                    <li><a href="#vbnet">VB.NET</a></li>
+                    <li><a href="#cf">ColdFusion</a></li>
+                    <li><a href="#php">PHP</a></li>
+                    <li><a href="#golang">Go Language</a></li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+    <div class="col-md-7">
+        <div class="console">
+            <span class="faded">[support@suggeri.com&nbsp;~]$</span>&nbsp;curlie&nbsp;-v&nbsp;<span class="faded">\</span><br>
+            &nbsp;&nbsp;POST&nbsp;https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC&nbsp;
+            <br><br>
+            <span class="faded">&gt;</span>&nbsp;<span class="field">POST</span>&nbsp;/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC&nbsp;<span class="field">HTTP</span>/<span class="value">1.1</span><br>
+            <span class="faded">&gt;</span>&nbsp;Host:&nbsp;<span class="value">suggeri.anvil.app</span><br>
+            <span class="faded">&gt;</span>&nbsp;Accept:&nbsp;<span class="value">*/*</span><br>
+            <br>
+            <span class="faded">&lt;</span>&nbsp;<span class="field">HTTP</span>/<span class="value">1.1</span>&nbsp;<span class="value">200</span>&nbsp;<span class="status">OK</span><br>
+            <span class="faded">&lt;</span>&nbsp;Content-Type:&nbsp;<span class="value">content-type: application/json</span><br>
+            <span class="faded">&lt;</span><br>
+
+            <span class="faded">&lt;</span>&nbsp;["535795531X","9788072097","9746427962","9788071813","3227001381"]<br><br>
+
+            <span class="faded">&lt;</span>&nbsp;+---------------------------------------------------+<br>
+            <span class="faded">&lt;</span>&nbsp;|&nbsp;NOTE:&nbsp;itens da resposta: 535795531X .. 3227001381 |<br>
+            <span class="faded">&lt;</span>&nbsp;+---------------------------------------------------+<br>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <section id="intro">
+        <h3>1. Introdução</h3>
+        <p>O sitema de recomendação da Suggeri está disponível como um serviço online e pode ser invocado por meio de uma API RESTful simples e fácil de usar.</p>
+        <h4>1.1 Itens</h4>
+        <p>Para a predição de Itens para um determinado Usuário:</p>
+        <p class="code">GET https://suggeri.anvil.app/_/api/predict_item/<b>{modelo_id}</b>/<b>{usuario_id}</b></p>
+        <h4>1.2 Usuários</h4>
+        <p>Para a predição de Usuários para um determinado Item:</p>
+        <p class="code">GET https://suggeri.anvil.app/_/api/predict_user/<b>{modelo_id}</b>/<b>{item_id}</b></p>
+        <h4>1.2 Notas de Avaliação</h4>
+        <p>Para a predição de Nota de Avaliação de um Usuários para um determinado Item:</p>
+        <p class="code">GET https://suggeri.anvil.app/_/api/predict_user_item/<b>{modelo_id}</b>/<b>{usuario_id}</b>/<b>{item_id}</b></p>
+        <p>Você também pode usar <span class="tech">POST</span> ao invés de <span class="tech">GET</span> (A API aceita os dois métodos).</p>
+        <p>The <span class="tech">POST</span> HTTP method is useful when:</p>
+        </section>
+        <section id="parameters">
+        <h3>2. Parâmetros</h3>
+        <dl>
+            <dt>modelo_id</dt>
+            <dd>O ID do modelo gerado após o treinamento na página Administrativa.<br>
+                Os IDs são determinados automaticamente pela <span class="tech">Suggeri</span>.</dd>
+            <dt>usuario_id</dt>
+            <dd>O ID do usuário que deseja realizar a predição.<br>
+                Os valores vão depender do <span class="tech">dataset</span> utilizado para treinar o modelo.</dd>
+            <dt>item_id</dt>
+            <dd>O ID do item que deseja realizar a predição.<br>
+                Os valores vão depender do <span class="tech">dataset</span> utilizado para treinar o modelo.</dd>
+        </dl>
+        </section>
+        <section id="limits">
+        <h3>3. Limits</h3>
+        <p>Como um serviço compartilhado, a API incorpora vários limites de uso que garantem que nenhum usuário único possa impactar negativamente as cargas de trabalho de outros usuários. Verifique seus limites de acordo com o seu plano contratado.</p>
+        <ul>
+            <li>Máximo <b>500 requisições por segundo por cliente</b>. Requisições adicionais resultam em <span class="tech">HTTP 429 (Too Many Requests)</span>.</li>
+        </ul>
+        <p>Observe que esses limites podem ser alterados conforme necessário, a fim de garantir uma operação suave do serviço para todos os usuários..</p>
+        <p>Se esses limites forem muito restritivos para o uso pretendido, você pode considerar nos contactar para um Licenciamento de uso privado na infraestrutura de sua empresa.</p>
+        </section>
+        <section id="examples">
+        <h3>4. Exemplos</h3>
+        <p>Os snippets e exemplos de código abaixo destinam-se a começar a consumir a API rapidamente com dados de teste, 
+            independentemente da sua pilha de tecnologia do lado do cliente. 
+            Se você tiver um exemplo de código que use tecnologia diferente, e você gostaria de compartilhá-lo com outros usuários, 
+            sinta-se à vontade para nos enviar um <a href="mailto:ronivaldo@gmail.com">email</a>.</p>
+        </section>
+        <section id="live">
+        <h4>4.1. Live Examples</h4>
+        <p>Alguns exemplos ao vivo que usam solicitações <span class="tech">GET</span>:</p>
+        <ul>
+            <li><a href="https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC" target="_blank">https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC</a></li>
+            <li><a href="https://suggeri.anvil.app/_/api/predict_user/2dcf0d2b/535795531X" target="_blank">https://suggeri.anvil.app/_/api/predict_user/2dcf0d2b/535795531X</a></li>
+            <li><a href="https://suggeri.anvil.app/_/api/predict_user_item/2dcf0d2b/A1BW4LQY9U32PC/535795531X" target="_blank">https://suggeri.anvil.app/_/api/predict_user_item/2dcf0d2b/A1BW4LQY9U32PC/535795531X</a></li>
+            
+        </ul>
+        </section>
+        <section id="curl">
+        <h4>4.2. curl</h4>
+            <p>Usando método <span class="tech">GET</span>:</p>
+            <p class="code">curl --get https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC</p>
+            <p>Usando método <span class="tech">POST</span>:</p>
+            <p class="code">curl --request POST https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC</p>
+        </section>
+        <section id="postman">
+        <h4>4.3. Postman</h4>
+        <p>Você pode usar o Postman para enviar requisições, acesse <a href="https://www.postman.com/">https://www.postman.com/</a>.</p>
+        </section>
+        <section id="posh">
+        <h4>4.4. PowerShell</h4>
+            <p>Use o método <span class="tech">POST</span>:</p>
+            <p class="code hanging-indent">Invoke-RestMethod `<br>
+                -Method Post `<br>
+                -Uri https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC `</p>
+        </section>
+        <section id="java">
+        <h4>4.5. Java</h4>
+        <p>Um exemplo Java que usa o Java 11 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html">HttpClient API</a> para enviar um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">var</span> uri = URI.create(<span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>);<br>
+            <span class="keyword">var</span> request = HttpRequest.newBuilder(uri)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;.POST()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;.build();<br>
+            <span class="keyword">var</span> client = HttpClient.newHttpClient();<br>
+            <span class="keyword">var</span> response = client.send(request, BodyHandlers.ofByteArray());<br>
+            <span class="keyword">var</span> body = response.body();<br>
+            <br>
+            <span class="keyword">if</span> (response.statusCode() == <span class="literal">200</span>) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(body);<br>
+            } <span class="keyword">else</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> errorMessage = <span class="keyword">new</span> String(body, StandardCharsets.UTF_8);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(errorMessage);<br>
+            }<br>
+        </p>
+        </section>
+        <section id="python">
+        <h4>4.6. Python</h4>
+        <p>O exemplo em Python usa a biblioteca <a href="http://docs.python-requests.org/">Requests</a> para enviar um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">import</span> requests<br>
+            url = <span class="string">'https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC'</span><br>
+            response = requests.post(url)<br>
+            <br>
+            <span class="keyword">if</span> response.status_code != <span class="literal">200</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">'Error: '</span> + response.text)<br>
+        </p>
+        </section>
+        <section id="ruby">
+        <h4>4.7. Ruby</h4>
+        <p>O exemplo em Ruby usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">require</span> <span class="string">'net/http'</span><br>
+            <br>
+            uri = <span class="constant">URI</span> <span class="string">'https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC'</span><br>
+            http = <span class="constant">Net</span>::<span class="constant">HTTP</span>.<span class="keyword">new</span> uri.host, uri.port<br>
+            request = <span class="constant">Net</span>::<span class="constant">HTTP</span>::<span class="constant">Post</span>.<span class="keyword">new</span> uri.request_uri<br>
+            response = http.request request<br>
+            <br>
+            <span class="keyword">case</span> response<br>
+            <span class="keyword">when</span> <span class="constant">Net</span>::<span class="constant">HTTPSuccess</span> <span class="keyword">then</span><br>
+            <span class="keyword">else</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;puts <span class="string">"Error: #{response.body}"</span><br>
+            <span class="keyword">end</span><br>
+        </p>
+        </section>
+        <section id="node">
+        <h4>4.8. Node.js</h4>
+        <p>O exemplo em Node.js usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">var</span> fs = require(<span class="string">'fs'</span>);<br>
+            <span class="keyword">var</span> request = require(<span class="string">'request'</span>);<br>
+            <br>
+            <span class="keyword">var</span> options = {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;encoding: null,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;url: <span class="string">'https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC'</span><br>
+            };<br>
+            <br>
+            request.post(options, <span class="keyword">function</span>(err, resp, body) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (err) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> console.log(err);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            });<br>
+        </p>
+        </section>
+        <section id="dlang">
+        <h4>4.9. D Language</h4>
+        <p>A D language usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">import</span> std.stdio;<br>
+            <span class="keyword">import</span> std.net.curl;<br>
+            <br>
+            <span class="keyword">auto</span> url = <span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>;<br>
+            <br>
+            <span class="keyword">void</span> main() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">auto</span> conn = HTTP();<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">auto</span> result = url.post;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (conn.statusLine.code == <span class="literal">200</span>) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeln(conn.statusLine.toString());<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            }<br>
+        </p>
+        </section>
+        <section id="csharp">
+        <h4>4.10. C# </h4>
+        <p>Um exemplo em C# usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">var</span> request = (HttpWebRequest) WebRequest.Create(<span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>);<br>
+            request.Method = <span class="string">"POST"</span>;<br>
+            <br>
+            <span class="keyword">var</span> requestStream = request.GetRequestStream();<br>
+            requestStream.Close();<br>
+            <br>
+            <span class="keyword">try</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> response = (HttpWebResponse) request.GetResponse();<br>
+            } <span class="keyword">catch</span> (WebException e) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span class="string">"Error: {0}"</span>, e.Status);<br>
+            }<br>
+        </p>
+        </section>
+        <section id="vbnet">
+        <h4>4.11. VB.NET</h4>
+        <p>Um exemplo em VB.NET usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">Dim</span> request <span class="keyword">As</span> HttpWebRequest = WebRequest.Create(<span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>)<br>
+            request.Method = <span class="string">"POST"</span><br>
+            <br>
+            <span class="keyword">Dim</span> requestStream <span class="keyword">As</span> Stream = request.GetRequestStream()<br>
+            requestStream.Write(zpl, <span class="literal">0</span>, zpl.Length)<br>
+            requestStream.Close()<br>
+            <br>
+            <span class="keyword">Try</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Dim</span> response <span class="keyword">As</span> HttpWebResponse = request.GetResponse()<br>
+            <span class="keyword">Catch</span> e <span class="keyword">As</span> WebException<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span class="string">"Error: {0}"</span>, e.Status)<br>
+            <span class="keyword">End</span> <span class="keyword">Try</span><br>
+        </p>
+        </section>
+        <section id="cf">
+        <h4>4.12. ColdFusion</h4>
+        <p>Um exemplo em ColdFusion usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            &lt;<span class="keyword">cfoutput</span>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="keyword">cfhttp</span> url=<span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span> method=<span class="string">"post"</span> result=<span class="string">"result"</span>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="keyword">cfhttp</span>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="keyword">cfcontent</span> variable=<span class="string">"#result.Filecontent#"</span> type=<span class="string">"#type#"</span> reset=<span class="string">"true"</span> /&gt;<br>
+            &lt;/<span class="keyword">cfoutput</span>&gt;<br>
+        </p>
+        </section>
+        <section id="php">
+        <h4>4.13. PHP</h4>
+        <p>Um exemplo em PHP usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">&lt;?php</span><br>
+            <br>
+            $curl = curl_init();<br>
+            curl_setopt($curl, <span class="constant">CURLOPT_URL</span>, <span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>);<br>
+            curl_setopt($curl, <span class="constant">CURLOPT_POST</span>, <span class="constant">TRUE</span>);<br>
+            $result = curl_exec($curl);<br>
+            <br>
+            <span class="keyword">if</span> (curl_getinfo($curl, <span class="constant">CURLINFO_HTTP_CODE</span>) == <span class="literal">200</span>) {<br>
+            } <span class="keyword">else</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print_r(<span class="string">"Error: $result"</span>);<br>
+            }<br>
+            <br>
+            curl_close($curl);<br>
+            <br>
+            <span class="keyword">?&gt;</span><br>
+        </p>
+        </section>
+        <section id="golang">
+        <h4>4.14. Go Language</h4>
+        <p>Um exemplo em Go usa um <span class="tech">POST</span>:</p>
+        <p class="code">
+            <span class="keyword">package</span> main<br>
+            <br>
+            <span class="keyword">import</span> (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"os"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"io"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"io/ioutil"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"log"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"bytes"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"net/http"</span><br>
+            )<br>
+            <br>
+            <span class="keyword">func</span> main() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;req, err := <span class="constant">http</span>.NewRequest(<span class="string">"POST"</span>, <span class="string">"https://suggeri.anvil.app/_/api/predict_item/2dcf0d2b/A1BW4LQY9U32PC"</span>, <span class="constant">bytes</span>.NewBuffer(zpl))<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> err != nil {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constant">log</span>.Fatalln(err)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;client := &<span class="constant">http</span>.Client{}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;response, err := client.Do(req)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> err != nil {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constant">log</span>.Fatalln(err)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">defer</span> response.Body.Close()<br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> response.StatusCode == <span class="constant">http</span>.StatusOK {<br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body, err := <span class="constant">ioutil</span>.ReadAll(response.Body)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> err != nil {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constant">log</span>.Fatalln(err)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constant">log</span>.Fatalln(string(body))<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            }<br>
+        </p>
+        </section>
+    </div>
+</div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Online RESTful web service for easy conversion of ZPL code to PNG images or PDF files.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Suggeri - API - Documentação</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Custom styling -->
+    <style>
+      #logo {
+      margin-right: 0.2em;
+      }
+      a.navbar-brand {
+      letter-spacing: 0.15em;
+      }
+      div.pull-left {
+      padding-right: 1em;
+      }
+    </style>
+    <style>
+      /* https://stackoverflow.com/questions/10405945/html-ordered-list-1-1-1-2-nested-counters-and-scope-not-working */
+      ol {
+      counter-reset: item;
+      }
+      ol > li {
+      counter-increment: item;
+      }
+      ol ol > li {
+      display: block;
+      }
+      ol ol > li:before {
+      content: counters(item, ".") ". ";
+      margin-left: -20px;
+      }
+      /* https://github.com/rs/curlie/blob/master/formatter/color.go */
+      /* https://jonasjacek.github.io/colors/ */
+      .console {
+      color: #eee;
+      background-color: #222;
+      padding: 1em;
+      font-family: monospace;
+      white-space: nowrap;
+      display: table; /* shrink width to size of contents */
+      }
+      .console .value  { color: #00afaf; }
+      .console .status { color: #af8700; }
+      .console .field  { color: #0087ff; }
+      .console .faded  { color: #8a8a8a; }
+      .code {
+      margin: 1em;
+      border: 1px solid darkgray;
+      background-color: #eee;
+      padding: 0.5em;
+      }
+      .code .string   { color: red;    }
+      .code .comment  { color: green;  }
+      .code .literal  { color: purple; }
+      .code .constant { color: purple; }
+      .code .keyword  { color: blue;   }
+      .hanging-indent {
+      padding-left: 1.5em;
+      text-indent: -1em;
+      }
+      .tech {
+      padding: 0.3em;
+      font-family: monospace;
+      background-color: #fff6ea;
+      }
+      dl dt:not(:first-child) {
+      padding-top: 1em;
+      }
+      section {
+      /* no collapsing margins */
+      overflow: auto;
+      }
+      section > p, section > h2, section > h3, section > h4, section > dl {
+      /* improves target animation look */
+      margin-left: 7px;
+      margin-right: 7px;
+      }
+      h2 {
+      margin-bottom: 1em;
+      }
+      h3, h4 {
+      margin-top: 0.75em;
+      margin-bottom: 0.75em;
+      }
+      :target {
+      animation: 2s highlightTarget cubic-bezier(0.3,0.9,0.4,0.9) 2 alternate;
+      }
+      @keyframes highlightTarget {
+      from {                              }
+      to   { background-color: peachpuff; }
+      }
+      section:last-of-type {
+      /* a little space at the bottom of the page */
+      margin-bottom: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Tutorial: Get started with Suggeri</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <section id="intro">
+            <h3>1. Introdução</h3>
+            <p>
+              Neste tutorial, você aprenderá a criar e implantar um sistema de recomendação usando inteligência artificial invocado por meio de uma API RESTful simples e fácil de usar.
+            </p>
+            <h4>1.1 Dataset</h4>
+            <p>Para usar o sistema de recomendação é preciso enviar um <span class="tech">dataset</span> no format CSV. Deve conter as seguintes colunas:</p>
+            <dl>
+              <dt>UserId</dt>
+              <dd>O ID do usuário.<br>
+              <dt>ProductId</dt>
+              <dd>O ID do produto, filme ou item.<br>
+              <dt>Rating</dt>
+              <dd>A nota de <span class="tech">0.0 a 5.0</span> que o UserId avaliou o ProductId</dd>
+            </dl>
+            <h4>1.2 Exemplo de Dataset</h4>
+            <p>Abaixo um exemplo de dataset com o formato esperado. Este exemplo completo pode ser baixado neste link <a href="https://github.com/ronivaldo/dsa-mentoria-turma-2/blob/main/data/dataset_test.csv" target="_blank">dataset_test.csv</a>.</p>
+            <p>
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>UserId</th>
+                  <th>ProductId</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A39HTATAQ9V7YF</td>
+                  <td>0205616461</td>
+                  <td>5.0</td>
+                </tr>
+                <tr>
+                  <td>A3JM6GV9MNOF9X</td>
+                  <td>0558925278</td>
+                  <td>3.0</td>
+                </tr>
+                <tr>
+                  <td>A1Z513UWSAAO0F</td>
+                  <td>0558925278</td>
+                  <td>5.0</td>
+                </tr>
+              </tbody>
+            </table>
+            </p>
+          </section>
+          <section id="intro">
+            <h3>2 Pré-requisitos</h3>
+            <p>Para executar estes tutorial será necessário o dataset de exemplo disponível no link <a href="https://github.com/ronivaldo/dsa-mentoria-turma-2/blob/main/data/dataset_test.csv" target="_blank">dataset_test.csv</a></p>
+          </section>
+          <section id="intro">
+            <h3>3 Criar uma Conta de Testes</h3>
+            <p>Acesse o <a href="https://suggeri.anvil.app/" target="_blank">https://suggeri.anvil.app/</a>, clique no menu <span class="tech">Login</span> e crie uma conta nova com seu e-mail e senha.</p>
+            <p>
+                <img src="image/cria_conta.png">
+            </p>
+          </section>
+          <section id="intro">
+            <h3>4 Upload do Modelo</h3>
+            <p>Acesse <span class="tech">Treinar Modelo</span> no menu e faça o upload do dataset de exemplo.</p>
+            <p>
+                <img src="image/treinar_modelo.png">
+            </p>
+            <p>Depois do upload do dataset, é iniciado automaticamente o treinamento do modelo.</p>
+            <p>
+                <img src="image/aguardando_treinamento.png">
+            </p>
+            <p>Aguarde alguns instantes até que o estado do modelo seja <span class="tech">Treinamento Finalizado</span>.</p>
+            <p>
+                <img src="image/treinamento_finalizado.png">
+            </p>
+            <p>A <span class="tech">chave do modelo</span> será o <span class="tech">modelo id</span> utilizado para realizar as predições.</p>
+            <p>Anote a <span class="tech">chave do modelo</span> gerada, pois precisaremos deste código mais adiante no tutorial. Na imagem está o <span class="tech">modelo id</span> de código <span class="tech">ae38fe62</span>.</p>
+          </section>
+          <section id="intro">
+            <h3>5 Testar Modelo</h3>
+            <p>Acesse <span class="tech">Testar Modelo</span> no menu e escolha o modelo que acabamos de treinar.</p>
+            <p>
+                <img src="image/testar_modelo.png">
+            </p>
+            <p>Depois do modelo escolhido, são mostradas as opções de testes.</p>
+            <p>
+                <img src="image/testar_modelo_opcoes.png">
+            </p>
+            <p>Observe a mensagem sobre o dataset_teste.csv, pois usaremos o <span class="tech">usuário id A1BW4LQY9U32PC</span> e o <span class="tech">produto id 535795531X</span> para os testes neste tutorial.</p>
+            <h3>5.1 Recomendação de Itens</h3>
+            <p>Vamos utilizar o usuário id <span class="tech">A1BW4LQY9U32PC</span> para que sejam recomendados itens/produtos que este usuário tenha interesse. Basta digitar o usuário id e clicar no botão <span class="tech">Recomendar</span>. Será exibida uma lista com os itens.</p>
+            <p>
+                <img src="image/teste_usuario.png">
+            </p>
+            <h3>5.2 Recomendação de Usuários</h3>
+            <p>Vamos utilizar o produto id <span class="tech">535795531X</span> para que sejam recomendados usuários que tenham interesse. Basta digitar o usuário id e clicar no botão <span class="tech">Recomendar</span>. Será exibida uma lista com os usuários.</p>
+            <p>
+                <img src="image/teste_produto.png">
+            </p>
+            <h3>5.3 Recomendação de Nota de Avaliação</h3>
+            <p>Vamos utilizar usuário id <span class="tech">A1BW4LQY9U32PC</span> e o produto id <span class="tech">535795531X</span> 
+                para que sejam recomendada qual a Nota de Avaliação deste usuário para este produto. Basta digitar o usuário id, produto id e clicar no botão <span class="tech">Recomendar</span>. Será exibida uma Nota de Avaliação.</p>
+            <p>
+                <img src="image/teste_nota.png">
+            </p>
+          </section>
+          <section id="intro">
+            <h3>5 Testar API</h3>
+            <p>Agora que já testamos o modelo treinado com sucesso, vamos acessar estes mesmos dados usando a API da Suggeri. A documentação completa em diversas linguagens de programação para acessar a API está disponível neste <a href="api.html" target="_blank">link</a>.</p>
+            <h3>5.1 Recomendação de Itens</h3>
+            <p>Vamos utilizar o modelo que acabamos de treinar e o usuário id <span class="tech">A1BW4LQY9U32PC</span> 
+                para que sejam recomendados itens/produtos que este usuário tenha interesse.
+            <p>
+            <p>O link para acesso às recomendações via API ficaria da seguinte forma:</p>
+            <p class="code"><a href="https://suggeri.anvil.app/_/api/predict_item/ae38fe62/A1BW4LQY9U32PC" target="_blank">https://suggeri.anvil.app/_/api/predict_item/ae38fe62/A1BW4LQY9U32PC</a></p>
+            <p>Para testar, basta acessar esta URL pelo Browser e teremos o mesmo resultado encontrado anteriormente.</p>
+            <p>
+                <img src="image/teste_usuario_api.png">
+            </p>
+            <h3>5.2 Recomendação de Usuários</h3>
+            <p>Vamos utilizar o produto id <span class="tech">535795531X</span> para que sejam recomendados usuários que tenham interesse. Basta digitar o usuário id e clicar no botão <span class="tech">Recomendar</span>. Será exibida uma lista com os usuários.</p>
+            <p>O link para acesso às recomendações via API ficaria da seguinte forma:</p>
+            <p class="code"><a href="https://suggeri.anvil.app/_/api/predict_user/ae38fe62/535795531X" target="_blank">https://suggeri.anvil.app/_/api/predict_user/ae38fe62/535795531X</a></p>
+            <p>Para testar, basta acessar esta URL pelo Browser e teremos o mesmo resultado encontrado anteriormente.</p>
+            <p>
+                <img src="image/teste_produto_api.png">
+            </p>
+            <h3>5.3 Recomendação de Nota de Avaliação</h3>
+            <p>Vamos utilizar usuário id <span class="tech">A1BW4LQY9U32PC</span> e o produto id <span class="tech">535795531X</span> 
+                para que sejam recomendada qual a Nota de Avaliação deste usuário para este produto.</p>
+            <p>O link para acesso às recomendações via API ficaria da seguinte forma:</p>
+            <p class="code"><a href="https://suggeri.anvil.app/_/api/predict_user_item/ae38fe62/A1BW4LQY9U32PC/535795531X" target="_blank">https://suggeri.anvil.app/_/api/predict_user_item/ae38fe62/A1BW4LQY9U32PC/535795531X</a></p>
+            <p>
+                <img src="image/teste_nota_api.png">
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
