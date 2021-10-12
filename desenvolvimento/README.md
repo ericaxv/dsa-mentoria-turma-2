@@ -9,4 +9,15 @@ Como estamos estruturados:
 - [Documentação da API](http://www.suggeri.com.br/api.html), com todos os detalhes de como acessar o serviço
 - [Site Administrativo](https://suggeri.anvil.app/) para receber as empresas e suas bases de dados
 - API para receber as chamadas dos sites dos clientes
+<<<<<<< HEAD
 - Servidor na nuvem escalável para treino automático de modelos a partir das bases
+=======
+- Servidor na nuvem escalável para treino automático de modelos a partir das bases
+
+Sub projetos:
+- [Notebooks](./notebooks) utilizados durante a análise e implementação
+- [Site](./site) com o nosso cartão de visitas online da Suggeri
+- [Site Administrativo](./site_adm) para o treinamento dos modelos
+- [Servidor de Predição](./servidor_predicao) para processar as requisição da API de Treinamento e Predição
+
+>>>>>>> 1a47cc468a430f7f0b8cca28737c7abe5910b285
