@@ -1,3 +1,6 @@
+
+#3° lugar no Programa de Mentoria da Data Science Academy
+
 # Suggeri
 
 Suggeri é um sistema de recomendação como serviço usando inteligência artificial.
