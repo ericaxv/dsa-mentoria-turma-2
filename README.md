@@ -1,5 +1,5 @@
 
-#3° lugar no Programa de Mentoria da Data Science Academy
+# 3° lugar no Programa de Mentoria da Data Science Academy
 
 # Suggeri
 
